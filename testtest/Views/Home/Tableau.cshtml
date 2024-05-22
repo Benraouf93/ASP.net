@@ -1,0 +1,48 @@
+﻿@model IEnumerable<testtest.Models.Specialite>
+@using testtest.Models
+@{
+    ViewBag.Title = "Tableau";
+}
+
+
+<style>
+    #sh {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+</style>
+<h2>Table des Specialites</h2>
+
+<p>
+    @Html.ActionLink("Create New", "ActionSpecialite")
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Code)</th>
+        <th>@Html.DisplayNameFor(model => model.Spec)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.Specialite)
+    {
+        <tr>
+            <td>@item.Code</td>
+            <td>@item.Spec</td>
+
+            <td id="sh">
+
+                <a href="@Url.Action("Edit", new { id = item.Code })" class="btn btn-primary" style="color:white">
+                    <i class="fas fa-pencil-alt"></i>
+                </a>
+                |
+                <a href="@Url.Action("Delete", new { id = item.Code })" class="btn btn-danger" style="color:white" onclick="return confirmDelete();">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Code }, new { @class = "btn btn-primary", @style = "color:white" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Code }, new { @class = "btn btn-danger", @style = "color:white" })*@
+            </td>
+        </tr>
+    }
+
+</table>
